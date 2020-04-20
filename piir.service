@@ -1,0 +1,13 @@
+[Unit]
+Description=Piir
+After=network.target
+
+[Service]
+ExecStart=/opt/piir/server.py /opt/piir/commands
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
