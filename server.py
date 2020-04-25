@@ -10,10 +10,7 @@ import tornado.web
 
 
 # Populated during startup.
-CONFIG = dict(
-    command_directory=None,
-    commands=None,
-)
+CONFIG = dict(command_directory=None, commands=None)
 
 
 class SendHandler(tornado.web.RequestHandler):
@@ -38,10 +35,19 @@ class SendHandler(tornado.web.RequestHandler):
         self.write(dict(success=True, message=f"Ran command: {command}"))
 
 
-def make_app():
-    return tornado.web.Application([
-        (r"/api/send", SendHandler),
-    ])
+def make_app(static_dir: str, debug: bool):
+    return tornado.web.Application(
+        [
+            (r"/api/send", SendHandler),
+            (
+                r"/()",
+                tornado.web.StaticFileHandler,
+                {"path": os.path.join(static_dir, "index.html")},
+            ),
+        ],
+        static_path=static_dir,
+        debug=debug,
+    )
 
 
 def configure(command_directory: str) -> None:
@@ -52,12 +58,14 @@ def configure(command_directory: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("command_directory")
+    parser.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
 
     configure(args.command_directory)
+    app_dir = os.path.dirname(os.path.abspath(__file__))
 
-    print(f"Running with config: {CONFIG}")
+    print(f"Running at {app_dir} with config: {CONFIG}")
 
-    app = make_app()
+    app = make_app(static_dir=os.path.join(app_dir, "static"), debug=args.debug)
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
