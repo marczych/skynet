@@ -1,9 +1,9 @@
 [Unit]
-Description=Piir
+Description=Skynet
 After=network.target
 
 [Service]
-ExecStart=/opt/piir/server.py /opt/piir/commands
+ExecStart=/opt/skynet/server.py /opt/skynet/commands
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
