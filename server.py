@@ -58,14 +58,16 @@ def configure(command_directory: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("command_directory")
+    parser.add_argument("--port", type=int, default=8888)
     parser.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
 
     configure(args.command_directory)
     app_dir = os.path.dirname(os.path.abspath(__file__))
+    port = args.port
 
-    print(f"Running at {app_dir} with config: {CONFIG}")
+    print(f"Running at {app_dir} on port {port} with config: {CONFIG}")
 
     app = make_app(static_dir=os.path.join(app_dir, "static"), debug=args.debug)
-    app.listen(8888)
+    app.listen(port)
     tornado.ioloop.IOLoop.current().start()
