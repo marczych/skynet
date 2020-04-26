@@ -3,11 +3,11 @@ Description=Skynet
 After=network.target
 
 [Service]
-ExecStart=/opt/skynet/server.py /opt/skynet/commands
+ExecStart=/opt/skynet/server.py /opt/skynet/commands --port 80
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
-User=pi
+User=root
 
 [Install]
 WantedBy=multi-user.target
