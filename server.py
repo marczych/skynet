@@ -38,7 +38,7 @@ class SendHandler(tornado.web.RequestHandler):
 def make_app(static_dir: str, debug: bool):
     return tornado.web.Application(
         [
-            (r"/api/send", SendHandler),
+            (r"/api/command", SendHandler),
             (
                 r"/()",
                 tornado.web.StaticFileHandler,
