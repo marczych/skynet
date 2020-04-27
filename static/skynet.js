@@ -53,7 +53,7 @@ function App() {
           </div>
         </Grid>
 
-        <Grid container spacing={ 1 }>
+        <Grid container spacing={ 4 }>
           {COMMAND_PREFIXES.map((command) => (
             <CommandRow
               key={ command }
@@ -70,7 +70,7 @@ function App() {
 function CommandRow({commandPrefix, setStatus}) {
   return (
     <React.Fragment>
-      <Grid container item xs={ 12 } spacing={ 3 } alignItems="center">
+      <Grid container item xs={ 12 } spacing={ 4 } alignItems="center">
         <Grid container item xs={ 3 }>
           <Typography>{ commandPrefix }</Typography>
         </Grid>
@@ -116,7 +116,13 @@ function CommandButton({ name, command, setStatus }) {
   }
 
   return (
-    <Button onClick={ sendCommand } variant="contained">{ name }</Button>
+    <Button
+      onClick={ sendCommand }
+      variant="contained"
+      size="large"
+    >
+      { name }
+    </Button>
   );
 }
 
