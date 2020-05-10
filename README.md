@@ -1,7 +1,8 @@
 # Skynet
 
 Repository of instructions, links, and webserver code for building an API to
-send IR commands on a Raspberry Pi.
+send IR commands on a Raspberry Pi. Don't miss the
+[accompanying blog post][blog]!
 
 This project was built for controlling skylight shades via IR via a raspberry
 pi hence the Skynet name. However, the general approach can be used for other
@@ -140,3 +141,4 @@ should be able to replay any IR signal you can throw at it!
 
 [LIRC]: https://www.lirc.org/
 [pi setup]: https://www.losant.com/blog/getting-started-with-the-raspberry-pi-zero-w-without-a-monitor
+[blog]: http://marczych.com/2020/05/10/skynet.html
